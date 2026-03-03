@@ -1,0 +1,79 @@
+# POST /email
+
+## Description
+
+This endpoint handles contact form submissions. It immediately returns a success response to the client and then sends an email notification asynchronously in the background.
+
+---
+
+## Request Body
+
+Content-Type: application/json
+
+Fields:
+
+* fullname (String, required)
+  Full name of the sender.
+
+* email (String, required)
+  Sender’s email address.
+
+* subject (String, required)
+  Subject of the message.
+
+* message (String, required)
+  Message content.
+
+* myEmail (String, required)
+  Recipient email address.
+
+---
+
+## Processing Logic
+
+1. Extracts fullname, email, subject, message, and myEmail from the request body.
+
+2. Immediately sends a 200 OK response:
+
+{
+"status": true,
+"message": "Message sent successfully"
+}
+
+3. Runs an asynchronous background function to send the email:
+
+   * Converts myEmail and email to lowercase.
+   * Formats fullname so each word starts with an uppercase letter.
+   * Converts subject to lowercase.
+   * Sends an HTML email using the recieveEmail function.
+
+4. If an error occurs during the async email sending process:
+
+   * The error is logged to the console.
+   * The client response remains unaffected.
+
+---
+
+## Success Response (200 OK)
+
+{
+"status": true,
+"message": "Message sent successfully"
+}
+
+---
+
+## Error Response (500 Internal Server Error)
+
+{
+"message": "Error sending email: <error_message>"
+}
+
+---
+
+## Notes
+
+* The email is sent after the response is returned to the client.
+* Email sending errors do not affect the success response.
+* Name formatting ensures proper capitalization.
+* All email addresses are normalized to lowercase.
