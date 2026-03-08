@@ -18,7 +18,7 @@ app.use('/email', async (req, res) => {
       email: myEmail.toLowerCase(),
       subject: `${subject.trim().split(' ').map(e => e[0]?.toUpperCase() + e.slice(1)?.toLowerCase()).join(' ')}`,
       html: `
-              <h2>New Message from: ${fullname.split(' ').map(e => e[0]?.toUpperCase() + e.slice(1)?.toLowerCase()).join(' ')}</h2>
+              <h2>New Message from: ${fullname.trim().split(' ').map(e => e[0]?.toUpperCase() + e.slice(1)?.toLowerCase()).join(' ')}</h2>
               <p><strong>Email:</strong> ${clientEmail.toLowerCase()}</p>
               <p>${message.trim()}</p>
             `
