@@ -1,5 +1,5 @@
 # METHOD: POST
-# BASE_URL: https://email-service-vu7f.onrender.com/email
+# BASE_URL: https://email-service-sigma.vercel.app/email
 
 ## Description
 
