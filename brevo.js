@@ -1,11 +1,8 @@
-require('dotenv').config();
 const Brevo = require('@getbrevo/brevo');
 
 
 exports.recieveEmail = async (options) => {
   try {
-    console.log("options:", options);
-
     const apikey = process.env.BREVO_API_KEY;
     const apiInstance = new Brevo.TransactionalEmailsApi();
     apiInstance.setApiKey(Brevo.TransactionalEmailsApiApiKeys.apiKey, apikey);

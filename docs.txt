@@ -16,7 +16,7 @@ Fields:
 * fullname (String, required)
   Full name of the sender.
 
-* email (String, required)
+* clientEmail (String, required)
   Sender’s email address.
 
 * subject (String, required)
@@ -26,13 +26,13 @@ Fields:
   Message content.
 
 * myEmail (String, required)
-  Recipient email address.
+  Your email address.
 
 ---
 
 ## Processing Logic
 
-1. Extracts fullname, email, subject, message, and myEmail from the request body.
+1. Extracts fullname, clientEmail, subject, message, and myEmail from the request body.
 
 2. Immediately sends a 200 OK response:
 
@@ -43,9 +43,9 @@ Fields:
 
 3. Runs an asynchronous background function to send the email:
 
-   * Converts myEmail and email to lowercase.
+   * Converts myEmail and clientEmail to lowercase.
    * Formats fullname so each word starts with an uppercase letter.
-   * Converts subject to lowercase.
+   * Converts subject to capitalized first character.
    * Sends an HTML email using the recieveEmail function.
 
 4. If an error occurs during the async email sending process:
